@@ -73,9 +73,9 @@ _Based on your problem description in Sections 1 and 2, are there any aspects yo
 
 _Describe broadly how you are proposing to solve for the requirements you described in Section 2. This may include class diagram(s) showing what components you are planning to build. You should argue why this architecture (organization of components) is reasonable. That is, why it represents a good data flow and a good separation of concerns. Where applicable, argue why this architecture satisfies the stated requirements._
 
-This initial iteration will provide the minimum viable product (MVP) including adding, retrieving, and updating a simple budget plan application.
+This initial iteration will provide the minimum viable product (MVP) including adding, retrieving, and updating a simple budget plan application. Upon initial launch and login the dashboard will display their current budget, expenses, and available funds.
 
-We will use API Gateway and Lambda to create 5 endpoints (Dashboard, ExpenseTracker, GetExpenses, GetBudgetGoals, GetMonthlyIncome) that will handle the creation, updating, and retrieval of budget information to satisfy our requirements.
+We will use API Gateway and Lambda to create multiple endpoints, ExpenseTracker, GetExpenses, GetBudgetGoals, GetMonthlyIncome, Get Profile, UpdateExpenses,) that will handle the creation, updating, and retrieval of budget information as well as profile information to satisfy our requirements.
 
 We will store Dashboard Items, Categories, Expenses in separate tables in DynamoDB.
 
@@ -89,6 +89,8 @@ Simple Plan Budgeting App will provide a main web page providing a variety of op
 _Define the data models your service will expose in its responses via your *`-Model`* package. These will be equivalent to the *`PlaylistModel`* and *`SongModel`* from the Unit 3 project._
 
 ```
+
+
 // ExpenseModel
 
 String category;
@@ -98,14 +100,35 @@ String Note;
 
 ```
 ```
-// DepartmentModel
+// BudgetModel
 
-String deptId;
-String deptName;
+Double  TotalIncome;
+Double TotalExpenses;
+Double TotalBudget;
+Double FundsAvailable;
 
 ```
+```
+// CategoryModel
 
-## 6.2. _GetEmployee Endpoint_
+String Category;
+Double BudgetedAmoutForCategory;
+
+```
+```
+// UserModel
+
+String username;
+String password;
+String email;
+
+```
+```
+
+*The below information is strictly for reference
+
+
+## 6.2. _GetProfile Endpoint_
 
 * Accepts `GET` requests to `/employee/:id`
 * Accepts an employeeID and returns the corresponding EmployeeModel.
