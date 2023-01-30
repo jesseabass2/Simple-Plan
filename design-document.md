@@ -23,25 +23,29 @@ _List the most important questions you have about your design, or things that yo
 
 _This is where we work backwards from the customer and define what our customers would like to do (and why). You may also include use cases for yourselves (as developers), or for the organization providing the product to customers._
 
-U1. As a user, I want to be able to create a new budget template and assign different catoegories of expenditures.
+U1. As a user, I want to be able to create a new budget template that lists categories with amounts.
 
-U2. As a user, I want to be able to input and adjust my monthly income as needed.
+U2. As a user, I want to add categories to the budget with amounts.
 
-U3. As an user, I want to be able to track my expenses and see how much funds are available.
+U3. As a user, I want to be able to input and adjust my monthly income as needed.
 
-U4. As a user I want to be able to set and/or delete monthly goals for my expenses and savings.
+U4. As an user, I want to be able to track my expenses and see how much funds are available.
 
-U5. As a user I want to be able to set reminders for bills and upcoming expenses.
+U5. As a user I want to be able to set monthly goals for my expenses and savings.
 
-U6. As a user, I want to be able to view my progress towards goals by some type of bar or pie chart.
+*U6. As a user I want to be able to set reminders for bills and upcoming expenses.
 
-U7. As a user I want to be able to make a note about an expense if description is needed.
+U7. As a user, I want to be able to view my progress towards goals by some type of bar or pie chart.
 
-U8. As a user, I want to be able to view a status bar of available funds per category.
+U8. As a user I want to be able to add a note about an expense if description is needed.
 
-U9. As a user, I want to be able to view total savings and expenses over the calendar year.
+U9. As a user, I want to be able to view a status bar of total available funds per category.
 
-*U10. As a user, I want to be able to export my budget data in CSV or excel
+*U10. As a user, I want to be able to view total savings (funds available compounded from previous months).
+
+*U11. As a user, I want to be able to view total expenses (expenses compounded from previous months).
+
+*U12. As a user, I want to be able to export my budget data in CSV or excel.
 
 
 *EXTRA FEATURES
@@ -59,15 +63,15 @@ _Which parts of the problem defined in Sections 1 and 2 will you solve with this
 * Adding, updating, and retrieving incomes and expenses
 * Modifying an allocation sliding scale by inputing percentages on monthly income
 * Retrieve previous months expenses
-* (EXTRA FEATURE) Ability to send email or text of reminders
+* Setting reminders for upcoming payments
 
 ### 4.2. Out of Scope
 
 _Based on your problem description in Sections 1 and 2, are there any aspects you are not planning to solve? Do potential expansions or related problems occur to you that you want to explicitly say you are not worrying about now? Feel free to put anything here that you think your team can't accomplish in the unit, but would love to do with more time._
 
 * Allowing the user to share their budget interactively with another user.
-* Allowing the user to modify previously completed expense reports
-* This simplet application doesn't allow for the conversion of currency, strictly USD.
+* Allowing the user to modify previously completed expense reports.
+* This simple application doesn't allow for the conversion of currency, strictly USD.
 
 # 5. Proposed Architecture Overview
 
@@ -75,7 +79,7 @@ _Describe broadly how you are proposing to solve for the requirements you descri
 
 This initial iteration will provide the minimum viable product (MVP) including adding, retrieving, and updating a simple budget plan application. Upon initial launch and login the dashboard will display their current budget, expenses, and available funds.
 
-We will use API Gateway and Lambda to create multiple endpoints, ExpenseTracker, GetExpenses, GetBudgetGoals, GetMonthlyIncome, Get Profile, UpdateExpenses,) that will handle the creation, updating, and retrieval of budget information as well as profile information to satisfy our requirements.
+We will use API Gateway and Lambda to create multiple endpoints (GetExpenses, GetBudget, GetMonthlyIncome, GetProfile, UpdateExpenses) that will handle the creation, updating, and retrieval of budget information as well as profile information to satisfy our requirements.
 
 We will store Dashboard Items, Categories, Expenses in separate tables in DynamoDB.
 
@@ -89,8 +93,7 @@ Simple Plan Budgeting App will provide a main web page providing a variety of op
 _Define the data models your service will expose in its responses via your *`-Model`* package. These will be equivalent to the *`PlaylistModel`* and *`SongModel`* from the Unit 3 project._
 
 ```
-
-
+```
 // ExpenseModel
 
 String category;
@@ -128,7 +131,7 @@ String email;
 *The below information is strictly for reference
 
 
-## 6.2. _GetProfile Endpoint_
+## 6.2. _GetExpenses Endpoint_
 
 * Accepts `GET` requests to `/employee/:id`
 * Accepts an employeeID and returns the corresponding EmployeeModel.
@@ -140,21 +143,21 @@ View Employee page sends a get request to GetEmployeeActivity.
 GetEmployeeActivity loads employee from contacts
 database and returns.](images/UpdateEmployeeSd.png)
 
-## 6.3 _GetContactGlobal Endpoint_
+## 6.3 _GetBudget Endpoint_
 
 * Accepts `GET` requests to `/employee`
 * Returns all the employees in all the departments in the EmployeeModel format.
     * If there is no data found, will throw a
       `NoDataFoundException`
 
-## 6.4. GetContactsByDepartment Endpoint
+## 6.4. _GetMonthlyIncome Endpoint_
 
 * Accepts `GET` requests to `/employee/:deptId`
 * Returns all the employees in the requested departments in the EmployeeModel format.
     * If there is no department found, will throw a
       `InvalidDepartmentException`
 
-## 6.5. _UpdateEmployee Endpoint_
+## 6.5. _UpdateBudget Endpoint_
 
 * Accepts `PUT` requests to `/employee/:id`
 * Accepts data to update a contact including an updated
@@ -165,14 +168,14 @@ database and returns.](images/UpdateEmployeeSd.png)
 * For security concerns, we will validate the provided employee name does not
   contain invalid characters: `" ' \`
 * If the employee name contains invalid characters, will throw an
-  `InvalidAttributeValueException` 
+  `InvalidAttributeValueException`
 
 ![Client sends submit update employee form to Website Update/Add page. Website
 Update/Add page sends an update request to UpdateEmployeeActivity.
 UpdateEmployeeActivity saves updates to the contacts
 database.](images/UpdateEmployeeSd.png)
 
-## 6.6. _AddEmployee Endpoint_
+## 6.6. _AddCategory Endpoint_
 
 * Accepts `POST` requests to `/employee/`
 * Accepts data to create a new employee which includes their
@@ -183,7 +186,7 @@ database.](images/UpdateEmployeeSd.png)
 * If the employee name contains invalid characters, will throw an
   `InvalidAttributeValueException`
 
-## 6.7 _AdvancedSearch Endpoint_
+## 6.7 _Update Category Endpoint_
 
 * Accepts the following parameters departmentId (REQUIRED), firstName,
   lastName, and employeeID to perform a search on the database
@@ -198,31 +201,36 @@ database.](images/UpdateEmployeeSd.png)
 * If the employee name contains invalid characters, will throw an
   `InvalidAttributeValueException`
 
-## 6.8 GetDeptGlobal 
+## 6.8 _GetCategory Endpoint_
 * Accepts `GET` requests to `/department`
 * Returns all the departments in the DepartmentTable format.
-  * If there is no data found, will throw a
-    `NoDataFoundException`
+    * If there is no data found, will throw a
+      `NoDataFoundException`
+
+## 6.9 _GetProfile Endpoint_
+
+
+## 6.10 _UpdateExpenses Endpoint_
 
 # 7. Tables
 
 _Define the DynamoDB tables you will need for the data your service will use. It may be helpful to first think of what objects your service will need, then translate that to a table structure, like with the *`Playlist` POJO* versus the `playlists` table in the Unit 3 project._
 
 * EmployeeTable
-  - employeeId // partition key, string
-  - firstName // string
-  - lastName // string
-  - jobTitle // string
-  - Email // string
-  - deptId // string (GSI Partition Key)
-  - hireDate // string
-  - phoneNumber // string
-  - dateOfBirth // string
+    - employeeId // partition key, string
+    - firstName // string
+    - lastName // string
+    - jobTitle // string
+    - Email // string
+    - deptId // string (GSI Partition Key)
+    - hireDate // string
+    - phoneNumber // string
+    - dateOfBirth // string
 
 * DepartmentTable
-  * deptId // partition key, string
-  * deptName // string
-   
+    * deptId // partition key, string
+    * deptName // string
+
 
 # 8. Pages
 
