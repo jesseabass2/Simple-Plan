@@ -21,7 +21,9 @@ _List the most important questions you have about your design, or things that yo
 
 ## 3. Use Cases
 
-_This is where we work backwards from the customer and define what our customers would like to do (and why). You may also include use cases for yourselves (as developers), or for the organization providing the product to customers._
+_This is where we work backwards from the customer and define what our customers would like to do (and why). 
+You may also include use cases for yourselves (as developers), or for the organization providing the product 
+to customers._
 
 U1. As a user, I want to be able to create a new budget template that lists categories with amounts.
 
@@ -29,31 +31,33 @@ U2. As a user, I want to add categories to the budget with amounts.
 
 U3. As a user, I want to be able to input and adjust my monthly income as needed.
 
-U4. As an user, I want to be able to track my expenses and see how much funds are available.
+U4. As a user, I want to be able to track individual expenses.
 
-U5. As a user I want to be able to set monthly goals for my expenses and savings.
+*U5. As a user I want to be able to set a due date for bills and upcoming expenses.
 
-*U6. As a user I want to be able to set reminders for bills and upcoming expenses.
+U6. As a user, I want to be able to view my progress towards goals by some type of bar or pie chart.
 
-U7. As a user, I want to be able to view my progress towards goals by some type of bar or pie chart.
+U7. As a user I want to be able to add a note about an expense if description is needed.
 
-U8. As a user I want to be able to add a note about an expense if description is needed.
+U8. As a user, I want to be able to view a status bar of total available funds per category.
 
-U9. As a user, I want to be able to view a status bar of total available funds per category.
+*U10. As a user, I want to be able to view total savings (funds available compounded from current month).
 
-*U10. As a user, I want to be able to view total savings (funds available compounded from previous months).
+*U11. As a user, I want to be able to view total expenses (expenses compounded from current month).
 
-*U11. As a user, I want to be able to view total expenses (expenses compounded from previous months).
+*U12. As a user, I want to be able to receive a reminder about an upcoming due date.
 
-*U12. As a user, I want to be able to export my budget data in CSV or excel.
+*U13. As a user, I want to be able to export my budget data in CSV.
 
 
-*EXTRA FEATURES
+*STRETCH GOALS
 
 
 ## 4. Project Scope
 
-_Clarify which parts of the problem you intend to solve. It helps reviewers know what questions to ask to make sure you are solving for what you say and stops discussions from getting sidetracked by aspects you do not intend to handle in your design._
+_Clarify which parts of the problem you intend to solve. It helps reviewers know what questions to ask to make 
+sure you are solving for what you say and stops discussions from getting sidetracked by aspects you do not 
+intend to handle in your design._
 
 
 ### 4.1. In Scope
@@ -61,8 +65,8 @@ _Clarify which parts of the problem you intend to solve. It helps reviewers know
 _Which parts of the problem defined in Sections 1 and 2 will you solve with this design? This should include the base functionality of your product. What pieces are required for your product to work?_
 
 * Adding, updating, and retrieving incomes and expenses
-* Modifying an allocation sliding scale by inputing percentages on monthly income
-* Retrieve previous months expenses
+* Modifying an allocation sliding scale by inputting percentages on monthly income
+* Retrieve current months expenses and savings.
 * Setting reminders for upcoming payments
 
 ### 4.2. Out of Scope
@@ -71,6 +75,7 @@ _Based on your problem description in Sections 1 and 2, are there any aspects yo
 
 * Allowing the user to share their budget interactively with another user.
 * Allowing the user to modify previously completed expense reports.
+* Managing reminders via sms or email.
 * This simple application doesn't allow for the conversion of currency, strictly USD.
 
 # 5. Proposed Architecture Overview
