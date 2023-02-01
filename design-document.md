@@ -164,45 +164,54 @@ String email;
 ## 6.6. _UpdateNote Endpoint_
 
 * Accepts `PUT` requests to `/expense/:note`
-* Accepts data to update the note about the expense,
+* Accepts data to update the note about the expense.
 
-## 6.7 _UpdateCategory Endpoint_
+## 6.7 _GetSavings Endpoint_
 
-* Accepts `expense`
+* Accepts `GET` requests to `budget/fundsAvailable
+* Returns the available funds after expenses are removed 
+  from monthly income
 
-## 6.8 _GetCategory Endpoint_
-* Accepts `GET` requests to `/category`
+## 6.8 _GetExpenses Endpoint_
+* Accepts `GET` requests to `/budget/:totalExpenses`
 * Returns all the categories in the Category Table format.
-    * If there is no data found, will throw a
-      `NoDataFoundException`
+    * If there are no expenses, will throw a
+      `NoExpensesFoundException` and display available funds
 
-## 6.9 _GetProfile Endpoint_
-*
+## 6.9 _GetReminder Endpoint_
+* Accepts `GET` requests to `/expenses/:date`
+* If date of expense is after *todaysDate*, a reminder 
+  with said 'expense' will be returned.
 
 
-## 6.10 _UpdateExpenses Endpoint_
+## 6.10 _DeleteExpense Endpoint_
+* Accepts `DELETE` request to a specific expense
 
 # 7. Tables
 
 _Define the DynamoDB tables you will need for the data your service will use. It may be helpful to first think of what objects your service will need, then translate that to a table structure, like with the *`Playlist` POJO* versus the `playlists` table in the Unit 3 project._
 
-* EmployeeTable
-    - employeeId // partition key, string
-    - firstName // string
-    - lastName // string
-    - jobTitle // string
-    - Email // string
-    - deptId // string (GSI Partition Key)
-    - hireDate // string
-    - phoneNumber // string
-    - dateOfBirth // string
+* ExpenseTable
+    - id // partition key, string
+    - date // Date
+    - total // float
+    - categoryName // string (GSI Partition Key)
+    - note // string
 
-* DepartmentTable
-    * deptId // partition key, string
-    * deptName // string
+
+* CategoryTable
+    - categoryId // partition key, string
+    - categoryName // string
+
+* BudgetTable
+    - budgetName // string
+    - totalIncome // float
+    - totalExpenses // float
+    - fundsAvailable // float
 
 
 # 8. Pages
 
-https://www.figma.com/file/5rmM0IQhuG0wefUsezsCud/Purple-Haze?node-id=0%3A1
+**to be added
+
 
