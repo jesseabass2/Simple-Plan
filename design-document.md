@@ -10,21 +10,15 @@ This design document describes the main use cases and functionality of Simple Pl
 
 
 ## 2. Top Questions to Resolve in Review
-
-_List the most important questions you have about your design, or things that you are still debating internally that you might like help working through._
-
+```
 1. Should the user be allowed to access multiple templates or would that be confusing and make saving information inefficient?
 2. Should the ability to link credit cards be an option to monitor payments as part of expenses?
 3. Should reminders in U5 be able to be sent via email or sms?
 4. Should there be a total end of year type report that would display totals for each category, savings?
-
+```
 
 ## 3. Use Cases
-
-_This is where we work backwards from the customer and define what our customers would like to do (and why). 
-You may also include use cases for yourselves (as developers), or for the organization providing the product 
-to customers._
-
+```
 U1. As a user, I want to be able to create a new budget template that lists categories with amounts.
 
 U2. As a user, I want to add categories to the budget with amounts(positive for income negative for expenses).
@@ -47,36 +41,26 @@ U6. As a user, I want to be able to add a note about an expense if description i
 
 
 *STRETCH GOALS
-
+```
 
 ## 4. Project Scope
 
-_Clarify which parts of the problem you intend to solve. It helps reviewers know what questions to ask to make 
-sure you are solving for what you say and stops discussions from getting sidetracked by aspects you do not 
-intend to handle in your design._
-
-
 ### 4.1. In Scope
-
-_Which parts of the problem defined in Sections 1 and 2 will you solve with this design? This should include the base functionality of your product. What pieces are required for your product to work?_
-
+```
 * Adding, updating, and retrieving incomes and expenses
 * Modifying an allocation sliding scale by inputting percentages on monthly income
 * Retrieve current months expenses and savings.
 * Setting reminders for upcoming payments
+```
 
 ### 4.2. Out of Scope
-
-_Based on your problem description in Sections 1 and 2, are there any aspects you are not planning to solve? Do potential expansions or related problems occur to you that you want to explicitly say you are not worrying about now? Feel free to put anything here that you think your team can't accomplish in the unit, but would love to do with more time._
-
+```
 * Allowing the user to share their budget interactively with another user.
 * Allowing the user to modify previously completed expense reports.
 * Managing reminders via sms or email.
 * This simple application doesn't allow for the conversion of currency, strictly USD.
-
+```
 # 5. Proposed Architecture Overview
-
-_Describe broadly how you are proposing to solve for the requirements you described in Section 2. This may include class diagram(s) showing what components you are planning to build. You should argue why this architecture (organization of components) is reasonable. That is, why it represents a good data flow and a good separation of concerns. Where applicable, argue why this architecture satisfies the stated requirements._
 
 This initial iteration will provide the minimum viable product (MVP) including adding, retrieving, and updating a simple budget plan application. Upon initial launch and login the dashboard will display their current budget, expenses, and available funds.
 
@@ -90,10 +74,6 @@ Simple Plan Budgeting App will provide a main web page providing a variety of op
 # 6. API
 
 ## 6.1. Public Models
-
-_Define the data models your service will expose in its responses via your *`-Model`* package. These will be equivalent to the *`PlaylistModel`* and *`SongModel`* from the Unit 3 project._
-
-```
 ```
 // ExpenseModel
 
@@ -127,10 +107,9 @@ String password;
 String email;
 
 ```
-```
+
 
 *The below information is strictly for reference
-
 
 ## 6.2. _CreateBudgetTemplate Endpoint_
 
@@ -168,7 +147,7 @@ String email;
 
 ## 6.7 _GetSavings Endpoint_
 
-* Accepts `GET` requests to `budget/fundsAvailable
+* Accepts `GET` requests to `budget/fundsAvailable`
 * Returns the available funds after expenses are removed 
   from monthly income
 
@@ -179,13 +158,16 @@ String email;
       `NoExpensesFoundException` and display available funds
 
 ## 6.9 _GetReminder Endpoint_
+
 * Accepts `GET` requests to `/expenses/:date`
 * If date of expense is after *todaysDate*, a reminder 
   with said 'expense' will be returned.
 
 
 ## 6.10 _DeleteExpense Endpoint_
-* Accepts `DELETE` request to a specific expense
+* Accepts `DELETE` request to a `/expense/:id`
+* If expense does not exist, will throw a
+    `NoExpensesFoundException`.
 
 # 7. Tables
 
