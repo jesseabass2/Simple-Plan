@@ -27,27 +27,23 @@ to customers._
 
 U1. As a user, I want to be able to create a new budget template that lists categories with amounts.
 
-U2. As a user, I want to add categories to the budget with amounts.
+U2. As a user, I want to add categories to the budget with amounts(positive for income negative for expenses).
 
-U3. As a user, I want to be able to input and adjust my monthly income as needed.
+U3. As a user, I want to be able to track individual expenses.
 
-U4. As a user, I want to be able to track individual expenses.
+*U4. As a user, I want to be able to set a due date for bills and upcoming expenses.
 
-*U5. As a user I want to be able to set a due date for bills and upcoming expenses.
+*U5. As a user, I want to be able to view my progress towards goals by some type of bar or pie chart.
 
-U6. As a user, I want to be able to view my progress towards goals by some type of bar or pie chart.
+U6. As a user, I want to be able to add a note about an expense if description is needed.
 
-U7. As a user I want to be able to add a note about an expense if description is needed.
+*U7. As a user, I want to be able to view total savings (current month).
 
-U8. As a user, I want to be able to view a status bar of total available funds per category.
+*U8. As a user, I want to be able to view total expenses (current month).
 
-*U10. As a user, I want to be able to view total savings (funds available compounded from current month).
+*U9. As a user, I want to be able to receive a reminder about an upcoming due date.
 
-*U11. As a user, I want to be able to view total expenses (expenses compounded from current month).
-
-*U12. As a user, I want to be able to receive a reminder about an upcoming due date.
-
-*U13. As a user, I want to be able to export my budget data in CSV.
+*U10. As a user, I want to be able to export my budget data in CSV.
 
 
 *STRETCH GOALS
@@ -102,7 +98,7 @@ _Define the data models your service will expose in its responses via your *`-Mo
 // ExpenseModel
 
 String category;
-double amout;
+Double amount;
 Date date;
 String Note;
 
@@ -120,7 +116,7 @@ Double FundsAvailable;
 // CategoryModel
 
 String Category;
-Double BudgetedAmoutForCategory;
+Double BudgetedAmountForCategory;
 
 ```
 ```
@@ -136,83 +132,52 @@ String email;
 *The below information is strictly for reference
 
 
-## 6.2. _GetExpenses Endpoint_
+## 6.2. _CreateBudgetTemplate Endpoint_
 
-* Accepts `GET` requests to `/employee/:id`
-* Accepts an employeeID and returns the corresponding EmployeeModel.
-    * If the given employee ID is not found, will throw a
-      `EmployeeNotFoundException`
+* Accepts `POST` requests to `/budget/`
+* Accepts data to create a new budget template to include 
+  monthlyIncome, fundsAvailable, categories, and expenses
+  for the current month.
 
-![Client sends get employee form to Website View Employee Page. Website
-View Employee page sends a get request to GetEmployeeActivity.
-GetEmployeeActivity loads employee from contacts
-database and returns.](images/UpdateEmployeeSd.png)
+## 6.3 _AddCategory Endpoint_
 
-## 6.3 _GetBudget Endpoint_
-
-* Accepts `GET` requests to `/employee`
-* Returns all the employees in all the departments in the EmployeeModel format.
+* Accepts `POST` requests to `/category/`
+* Accepts data to create a new category and set amount 
+  per category.
     * If there is no data found, will throw a
       `NoDataFoundException`
 
-## 6.4. _GetMonthlyIncome Endpoint_
+## 6.4. _TrackExpense Endpoint_
 
-* Accepts `GET` requests to `/employee/:deptId`
-* Returns all the employees in the requested departments in the EmployeeModel format.
-    * If there is no department found, will throw a
-      `InvalidDepartmentException`
+* Accepts `GET` requests to `/expense/:amount`
+* Returns the expense amount, category and note if available,
+  * If there is no expense found, will throw a
+    `InvalidExpenseException`
 
-## 6.5. _UpdateBudget Endpoint_
+## 6.5. _SetDueDate Endpoint_
 
-* Accepts `PUT` requests to `/employee/:id`
-* Accepts data to update a contact including an updated
-  firstName, lastName, jobTitle, deptId , dateOfBirth , email, and      
-  phoneNumber. Returns the updated contact.
-* If the employeeID or name is not found, will throw a   
-  `EmployeeNotFoundException`
-* For security concerns, we will validate the provided employee name does not
-  contain invalid characters: `" ' \`
-* If the employee name contains invalid characters, will throw an
-  `InvalidAttributeValueException`
+* Accepts `PUT` requests to `/expense/:date`
+* Accepts data to update a date for an expense
+* If the expense is not found, will throw a   
+  `ExpenseNotFoundException`
 
-![Client sends submit update employee form to Website Update/Add page. Website
-Update/Add page sends an update request to UpdateEmployeeActivity.
-UpdateEmployeeActivity saves updates to the contacts
-database.](images/UpdateEmployeeSd.png)
+## 6.6. _UpdateNote Endpoint_
 
-## 6.6. _AddCategory Endpoint_
+* Accepts `PUT` requests to `/expense/:note`
+* Accepts data to update the note about the expense,
 
-* Accepts `POST` requests to `/employee/`
-* Accepts data to create a new employee which includes their
-  firstName, lastName, jobTitle, deptId , dateOfBirth , email, and      
-  phoneNumber. Returns the new employee.
-* For security concerns, we will validate the provided employee name does not
-  contain invalid characters: `" ' \`
-* If the employee name contains invalid characters, will throw an
-  `InvalidAttributeValueException`
+## 6.7 _UpdateCategory Endpoint_
 
-## 6.7 _Update Category Endpoint_
-
-* Accepts the following parameters departmentId (REQUIRED), firstName,
-  lastName, and employeeID to perform a search on the database
-* Returns a list of results based on the entered search criteria.
-* A departmentID is required as this is the partition key.
-* If there is no data found, will throw a
-  `NoDataFoundException`
-* If there is no department found, will throw a
-  `InvalidDepartmentException`
-* For security concerns, we will validate the provided employee name does not
-  contain invalid characters: `" ' \`
-* If the employee name contains invalid characters, will throw an
-  `InvalidAttributeValueException`
+* Accepts `expense`
 
 ## 6.8 _GetCategory Endpoint_
-* Accepts `GET` requests to `/department`
-* Returns all the departments in the DepartmentTable format.
+* Accepts `GET` requests to `/category`
+* Returns all the categories in the Category Table format.
     * If there is no data found, will throw a
       `NoDataFoundException`
 
 ## 6.9 _GetProfile Endpoint_
+*
 
 
 ## 6.10 _UpdateExpenses Endpoint_
