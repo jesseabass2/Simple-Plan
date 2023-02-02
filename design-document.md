@@ -6,7 +6,7 @@
 
 Many people struggle to manage their finances and stay within a budget. They often have a difficult time keeping track of their income and expenses, and as a result, they may overspend or miss important bills. This app aims to solve this problem by providing a simple and easy-to-use platform for creating and managing a budget.
 
-This design document describes the main use cases and functionality of Simple Plan Budgeting App, a new, basic budgeting tool that will provide users a hastle free way to allocate funds and manage their finances. It is designed to implement various AWS tools to provide a secure login and will require user input of their finances.  There will not be a direct link to personal accounts or bank data so the information stored doesn't require other forms of security.
+This design document describes the main use cases and functionality of Simple Plan Budgeting App, a new, basic budgeting tool that will provide users a hassle-free way to allocate funds and manage their finances. It is designed to implement various AWS tools to provide a secure login and will require user input of their finances.  There will not be a direct link to personal accounts or bank data so the information stored doesn't require other forms of security.
 
 
 ## 2. Top Questions to Resolve in Review
@@ -23,11 +23,11 @@ _List the most important questions you have about your design, or things that yo
 
 _This is where we work backwards from the customer and define what our customers would like to do (and why). You may also include use cases for yourselves (as developers), or for the organization providing the product to customers._
 
-U1. As a user, I want to be able to create a new budget template and assign different catoegories of expenditures.
+U1. As a user, I want to be able to create a new budget template and assign different categories of expenditures.
 
 U2. As a user, I want to be able to input and adjust my monthly income as needed.
 
-U3. As an user, I want to be able to track my expenses and see how much funds are available.
+U3. As a user, I want to be able to track my expenses and see how much funds are available.
 
 U4. As a user I want to be able to set and/or delete monthly goals for my expenses and savings.
 
@@ -57,7 +57,7 @@ _Clarify which parts of the problem you intend to solve. It helps reviewers know
 _Which parts of the problem defined in Sections 1 and 2 will you solve with this design? This should include the base functionality of your product. What pieces are required for your product to work?_
 
 * Adding, updating, and retrieving incomes and expenses
-* Modifying an allocation sliding scale by inputing percentages on monthly income
+* Modifying an allocation sliding scale by inputting percentages on monthly income
 * Retrieve previous months expenses
 * (EXTRA FEATURE) Ability to send email or text of reminders
 
@@ -67,7 +67,7 @@ _Based on your problem description in Sections 1 and 2, are there any aspects yo
 
 * Allowing the user to share their budget interactively with another user.
 * Allowing the user to modify previously completed expense reports
-* This simplet application doesn't allow for the conversion of currency, strictly USD.
+* This simple application doesn't allow for the conversion of currency, strictly USD.
 
 # 5. Proposed Architecture Overview
 
@@ -75,7 +75,7 @@ _Describe broadly how you are proposing to solve for the requirements you descri
 
 This initial iteration will provide the minimum viable product (MVP) including adding, retrieving, and updating a simple budget plan application. Upon initial launch and login the dashboard will display their current budget, expenses, and available funds.
 
-We will use API Gateway and Lambda to create multiple endpoints, ExpenseTracker, GetExpenses, GetBudgetGoals, GetMonthlyIncome, Get Profile, UpdateExpenses,) that will handle the creation, updating, and retrieval of budget information as well as profile information to satisfy our requirements.
+We will use API Gateway and Lambda to create multiple endpoints (ExpenseTracker, GetExpenses, GetBudgetGoals, GetMonthlyIncome, Get Profile, UpdateExpenses,) that will handle the creation, updating, and retrieval of budget information as well as profile information to satisfy our requirements.
 
 We will store Dashboard Items, Categories, Expenses in separate tables in DynamoDB.
 
