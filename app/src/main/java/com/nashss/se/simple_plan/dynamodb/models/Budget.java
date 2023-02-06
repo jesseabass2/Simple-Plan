@@ -1,4 +1,4 @@
-package com.nashss.se.simple_plan.models;
+package com.nashss.se.simple_plan.dynamodb.models;
 
 public class Budget {
     private String budgetName;
