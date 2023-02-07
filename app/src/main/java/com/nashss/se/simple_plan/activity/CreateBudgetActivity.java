@@ -1,13 +1,16 @@
 package com.nashss.se.simple_plan.activity;
 
 import com.nashss.se.simple_plan.dynamodb.BudgetDao;
+import com.nashss.se.simple_plan.requests.CreateBudgetRequest;
+import com.nashss.se.simple_plan.results.CreateBudgetResult;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
-import java.util.logging.LogManager;
-import java.util.logging.Logger;
+import javax.inject.Inject;
 
 
 public class CreateBudgetActivity {
-    private final Logger log;
+    private final Logger log = LogManager.getLogger();
 
     private final BudgetDao budgetDao;
 
@@ -18,12 +21,11 @@ public class CreateBudgetActivity {
     @Inject
     public CreateBudgetActivity(BudgetDao budgetDao) {
         this.budgetDao = budgetDao;
-        log = LogManager.getLogger();
     }
 
-    public CreateDepartmentResult handleBudgetRequest(CreateDepartmentRequest request) {
-
-        log.info("Received Create Budget Request {}", request);
+    public CreateBudgetResult handleBudgetRequest(CreateBudgetRequest createBudgetRequest) {
+        log.info("Received Create Budget Request {}", createBudgetRequest);
+        return null;
 
     }
 }

@@ -1,7 +1,7 @@
 package com.nashss.se.simple_plan.lambda;
 
-import com.nashss.se.musicplaylistservice.dependency.DaggerServiceComponent;
-import com.nashss.se.musicplaylistservice.dependency.ServiceComponent;
+import com.nashss.se.simple_plan.dependency.DaggerServiceComponent;
+import com.nashss.se.simple_plan.dependency.ServiceComponent;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

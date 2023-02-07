@@ -1,6 +1,6 @@
 package com.nashss.se.simple_plan.dynamodb.models;
 
-public class Budget {
+public class BudgetModel {
     private String budgetName;
     private double monthlyIncome;
     private double totalExpenses;
