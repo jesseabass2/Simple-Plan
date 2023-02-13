@@ -3,6 +3,7 @@ package com.nashss.se.simple_plan.activity;
 import com.nashss.se.simple_plan.dynamodb.BudgetDao;
 import com.nashss.se.simple_plan.activity.requests.CreateBudgetRequest;
 import com.nashss.se.simple_plan.activity.results.CreateBudgetResult;
+import com.nashss.se.simple_plan.dynamodb.models.Budget;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -26,7 +27,8 @@ public class CreateBudgetActivity {
     public CreateBudgetResult handleBudgetRequest(CreateBudgetRequest createBudgetRequest) {
         log.info("Received Create Budget Request {}", createBudgetRequest);
 
-
-
+        Budget newBudget = new Budget();
+        newBudget.setBudgetName(createBudgetRequest.getName());
+        return null;
     }
 }

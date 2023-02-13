@@ -85,6 +85,7 @@ String Note;
 ```
 // BudgetModel
 
+String BudgetName
 Double  TotalIncome;
 Double TotalExpenses;
 Double TotalBudget;
