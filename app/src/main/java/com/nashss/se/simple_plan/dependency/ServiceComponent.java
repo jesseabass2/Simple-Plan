@@ -24,4 +24,10 @@ public interface ServiceComponent {
      * @return CreateCategoryActivity
      */
     CreateCategoryActivity provideCreateCategoryActivity();
+
+    /**
+     * Provides the relevant activity.
+     * @return GetSingleExpenseActivity
+     */
+    GetSingleExpenseActivity provideGetSingleExpenseActivity();
 }
