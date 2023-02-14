@@ -96,7 +96,7 @@ Double FundsAvailable;
 // CategoryModel
 
 String Category;
-Double BudgetedAmountForCategory;
+Double BudgetedAmount;
 
 ```
 ```

@@ -3,8 +3,6 @@ package com.nashss.se.simple_plan.activity.requests;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
 
-import java.util.List;
-
 @JsonDeserialize(builder = CreateBudgetRequest.Builder.class)
 public class CreateBudgetRequest {
 
@@ -97,7 +95,5 @@ public class CreateBudgetRequest {
         public CreateBudgetRequest build() {
             return new CreateBudgetRequest(budgetName, totalIncome, totalExpenses, totalBudgeted, fundsAvailable);
         }
-
-
     }
 }
