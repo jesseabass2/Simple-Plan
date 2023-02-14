@@ -15,7 +15,7 @@ public class Category {
 
     private String categoryName;
 
-    private Double budgetedAmountForCategory;
+    private double budgetedAmount;
 
     private Boolean goalToSave;
 
@@ -26,9 +26,21 @@ public class Category {
         this.categoryName = categoryName;
     }
 
+    @DynamoDBAttribute(attributeName = "budgeted_amount")
+    public double getBudgetedAmount() {
+        return budgetedAmount;
+    }
 
+    public void setBudgetedAmount(double budgetedAmount) {
+        this.budgetedAmount = budgetedAmount;
+    }
 
+    @DynamoDBAttribute(attributeName = "goal_to_save")
+    public boolean getGoalToSave() {
+        return goalToSave;
+    }
 
-
-
+    public void setGoalToSave(boolean goalToSave) {
+        this.goalToSave = goalToSave;
+    }
 }

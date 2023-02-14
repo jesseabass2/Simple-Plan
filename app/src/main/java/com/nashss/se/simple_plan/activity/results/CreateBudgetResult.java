@@ -1,24 +1,25 @@
 package com.nashss.se.simple_plan.activity.results;
 
 
+import com.nashss.se.simple_plan.dynamodb.models.Budget;
 import com.nashss.se.simple_plan.models.BudgetModel;
 
 public class CreateBudgetResult {
 
-    private final BudgetModel budget;
+    private final BudgetModel budgetModel;
 
-    private CreateBudgetResult(BudgetModel budget) {
-        this.budget = budget;
+    private CreateBudgetResult(Budget budget) {
+        this.budgetModel = new BudgetModel(budget);
     }
 
     public BudgetModel getBudget() {
-        return budget;
+        return budgetModel;
     }
 
     @Override
     public String toString() {
         return "CreateBudgetResult{" +
-                "budget=" + budget +
+                "budget=" + budgetModel +
                 "}";
     }
 
@@ -27,9 +28,9 @@ public class CreateBudgetResult {
     }
 
     public static class Builder {
-        private BudgetModel budget;
+        private Budget budget;
 
-        public Builder withBudget(BudgetModel budget) {
+        public Builder withBudget(Budget budget) {
             this.budget = budget;
             return this;
         }

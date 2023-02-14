@@ -28,7 +28,30 @@ public class CreateBudgetActivity {
         log.info("Received Create Budget Request {}", createBudgetRequest);
 
         Budget newBudget = new Budget();
-        newBudget.setBudgetName(createBudgetRequest.getName());
-        return null;
+        newBudget.setBudgetName(createBudgetRequest.getBudgetName());
+        newBudget.setTotalIncome(createBudgetRequest.getTotalIncome());
+        newBudget.setTotalExpenses(createBudgetRequest.getTotalExpenses());
+        newBudget.setTotalBudgeted(createBudgetRequest.getTotalBudgeted());
+        newBudget.setFundsAvailable(createBudgetRequest.getFundsAvailable());
+
+        budgetDao.saveBudget(newBudget);
+
+        return CreateBudgetResult.builder()
+                .withBudget(newBudget)
+                .build();
     }
+
+    /**
+     * Checks the important attributes of a CreateBudgetRequest for validity.
+     * <p>
+     * This includes required fields.
+     * </p>
+     * @param request the CreateBudgetRequest to check
+     */
+
+//    private void checkAttributes(CreateBudgetRequest request) {
+//        if (request.getBudgetName() == null) {
+//
+//        }
+//    }
 }
