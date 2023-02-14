@@ -28,7 +28,7 @@ public class CreateBudgetActivity {
         log.info("Received Create Budget Request {}", createBudgetRequest);
 
         Budget newBudget = new Budget();
-        newBudget.setBudgetName(createBudgetRequest.getName());
+        newBudget.setBudgetName(createBudgetRequest.getBudgetName());
         return null;
     }
 }

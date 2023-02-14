@@ -14,7 +14,7 @@ import java.util.Objects;
 @DynamoDBTable(tableName = "expenses")
 public class Expense {
 
-    private String expenseID;
+    private String expenseId;
 
     private String category;
 
@@ -25,12 +25,12 @@ public class Expense {
     private String note;
 
     @DynamoDBAttribute(attributeName = "expenseID")
-    public String getExpenseID() {
-        return expenseID;
+    public String getExpenseId() {
+        return expenseId;
     }
 
-    public void setExpenseID(String expenseID) {
-        this.expenseID = expenseID;
+    public void setExpenseID(String expenseId) {
+        this.expenseId = expenseId;
     }
 
     @DynamoDBRangeKey(attributeName = "category")
