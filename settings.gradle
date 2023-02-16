@@ -9,3 +9,5 @@
 
 rootProject.name = 'Simple-Plan'
 include('app')
+include 'checkstyles'
+

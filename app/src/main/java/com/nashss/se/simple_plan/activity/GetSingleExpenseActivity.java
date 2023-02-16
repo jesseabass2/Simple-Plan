@@ -7,11 +7,15 @@ import com.nashss.se.simple_plan.dynamodb.models.Expense;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import javax.inject.Inject;
+
 public class GetSingleExpenseActivity {
     private final Logger log = LogManager.getLogger();
 
     private final ExpenseDao expenseDao;
 
+
+    @Inject
     public GetSingleExpenseActivity(ExpenseDao expenseDao) {
         this.expenseDao = expenseDao;
     }

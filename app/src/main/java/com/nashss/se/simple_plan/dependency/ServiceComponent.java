@@ -30,4 +30,11 @@ public interface ServiceComponent {
      * @return GetSingleExpenseActivity
      */
     GetSingleExpenseActivity provideGetSingleExpenseActivity();
+
+    /**
+     * Provides the relevant activity.
+     * @return GetSingleExpenseActivity
+     */
+
+    CreateExpenseActivity provideCreateExpenseActivity();
 }

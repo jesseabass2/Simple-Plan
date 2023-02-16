@@ -8,20 +8,20 @@ public class CreateBudgetRequest {
 
     private final String budgetName;
 
-    private final double totalIncome;
+    private final Double totalIncome;
 
-    private final double totalExpenses;
+    private final Double totalExpenses;
 
-    private final double totalBudgeted;
+    private final Double totalBudgeted;
 
-    private final double fundsAvailable;
+    private final Double fundsAvailable;
 
 
     private CreateBudgetRequest(String budgetName,
-                               double totalIncome,
-                               double totalExpenses,
-                               double totalBudgeted,
-                               double fundsAvailable) {
+                               Double totalIncome,
+                               Double totalExpenses,
+                               Double totalBudgeted,
+                               Double fundsAvailable) {
         this.budgetName = budgetName;
         this.totalIncome = totalIncome;
         this.totalExpenses = totalExpenses;
@@ -33,19 +33,19 @@ public class CreateBudgetRequest {
         return budgetName;
     }
 
-    public double getTotalIncome() {
+    public Double getTotalIncome() {
         return totalIncome;
     }
 
-    public double getTotalExpenses() {
+    public Double getTotalExpenses() {
         return totalExpenses;
     }
 
-    public double getTotalBudgeted() {
+    public Double getTotalBudgeted() {
         return totalBudgeted;
     }
 
-    public double getFundsAvailable() {
+    public Double getFundsAvailable() {
         return fundsAvailable;
     }
 
@@ -66,28 +66,28 @@ public class CreateBudgetRequest {
     @JsonPOJOBuilder
     public static class Builder {
         private String budgetName;
-        private double totalIncome;
-        private double totalExpenses;
-        private double totalBudgeted;
-        private double fundsAvailable;
+        private Double totalIncome;
+        private Double totalExpenses;
+        private Double totalBudgeted;
+        private Double fundsAvailable;
 
         public Builder withBudgetName(String budgetName) {
             this.budgetName = budgetName;
             return this;
         }
-        public Builder withTotalIncome(double totalIncome) {
+        public Builder withTotalIncome(Double totalIncome) {
             this.totalIncome = totalIncome;
             return this;
         }
-        public Builder withTotalExpenses(double totalExpenses) {
+        public Builder withTotalExpenses(Double totalExpenses) {
             this.totalExpenses = totalExpenses;
             return this;
         }
-        public Builder withTotalBudgeted(double totalBudgeted) {
+        public Builder withTotalBudgeted(Double totalBudgeted) {
             this.totalBudgeted = totalBudgeted;
             return this;
         }
-        public Builder withFundsAvailable(double fundsAvailable) {
+        public Builder withFundsAvailable(Double fundsAvailable) {
             this.fundsAvailable = fundsAvailable;
             return this;
         }

@@ -2,7 +2,7 @@ package com.nashss.se.simple_plan.models;
 
 import com.nashss.se.simple_plan.dynamodb.models.Expense;
 
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.Objects;
 
 public class ExpenseModel {
@@ -13,7 +13,7 @@ public class ExpenseModel {
 
     private double amount;
 
-    private Date date;
+    private LocalDate date;
 
     private String note;
 
@@ -38,7 +38,7 @@ public class ExpenseModel {
         return amount;
     }
 
-    public Date getDate() {
+    public LocalDate getDate() {
         return date;
     }
 

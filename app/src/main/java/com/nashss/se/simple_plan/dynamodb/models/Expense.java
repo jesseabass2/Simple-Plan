@@ -1,12 +1,10 @@
 package com.nashss.se.simple_plan.dynamodb.models;
 
-import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBAttribute;
-import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBHashKey;
-import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBRangeKey;
-import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTable;
+import com.amazonaws.services.dynamodbv2.datamodeling.*;
+import com.nashss.se.simple_plan.converters.LocalDateConverter;
 
+import java.time.LocalDate;
 import java.util.Date;
-import java.util.Objects;
 
 /**
  * Represents an expense in the expenses table.
@@ -14,13 +12,17 @@ import java.util.Objects;
 @DynamoDBTable(tableName = "expenses")
 public class Expense {
 
+    public static final String CATEGORY_GSI = "CategoryExpenseIdIndex";
+
+    public static final String EXPENSE_DATE_GSI = "DateOfExpensesIndex";
+
     private String expenseId;
 
     private String category;
 
     private double amount;
 
-    private Date date;
+    private LocalDate date;
 
     private String note;
 
@@ -28,12 +30,12 @@ public class Expense {
     public String getExpenseId() {
         return expenseId;
     }
-
     public void setExpenseID(String expenseId) {
         this.expenseId = expenseId;
     }
 
-    @DynamoDBRangeKey(attributeName = "category")
+    @DynamoDBIndexHashKey(globalSecondaryIndexName= CATEGORY_GSI)
+    @DynamoDBAttribute(attributeName = "category")
     public String getCategory() {
         return category;
     }
@@ -52,11 +54,11 @@ public class Expense {
     }
 
     @DynamoDBHashKey(attributeName = "date")
-    public Date getDate() {
+    @DynamoDBTypeConverted(converter = LocalDateConverter.class)
+    public LocalDate getDate() {
         return date;
     }
-
-    public void setDate(Date date) {
+    public void setDate(LocalDate date) {
         this.date = date;
     }
 

@@ -70,6 +70,4 @@ public class CreateCategoryRequest {
             return new CreateCategoryRequest(categoryName, budgetedAmount, goalToSave);
         }
     }
-
-
 }

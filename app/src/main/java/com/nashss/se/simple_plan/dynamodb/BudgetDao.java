@@ -14,5 +14,6 @@ public class BudgetDao {
     }
 
     public void saveBudget(Budget newBudget) {
+        this.dyanDynamoDBMapper.save(newBudget);
     }
 }
